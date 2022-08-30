@@ -1,24 +1,15 @@
-// CSE 143, Summer 2012
-// This program evaluates "postfix" expressions (also called "Reverse Polish 
-// Notation"), which are mathematical expressions but with the operators placed
-// after operands instead of between.
-// For example: 1 + 2 * 3 + 4  is written as 1 2 3 * + 4 +
-
 import java.util.*;
 
 public class Postfix {
     public static void main(String[] args) {
-        System.out.println(postfixEvaluate("1 2 +"));               // 3
-        System.out.println(postfixEvaluate("1 2 3 * + 4 +"));       // 11
-        System.out.println(postfixEvaluate("5 2 4 * + 7 -"));       // 6
-        System.out.println(postfixEvaluate("2 3 + 4 5 * +"));       // 25
-        System.out.println(postfixEvaluate("8 5 * 7 4 2 + * +"));   // 82
-        System.out.println(postfixEvaluate("6 8 2 / 1 - *"));       // 18
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Input: ");
+        String n = sc.nextLine();
+        System.out.print("Output: ");
+        System.out.println(postfixEvaluate(n));               
+
     }
     
-    // Evaluates the given postfix expression string and returns the result.
-    // Precondition: expression consists only of integers, +-*/, and spaces in
-    //               proper postfix format such as "2 3 - 4 *"
     public static int postfixEvaluate(String exp) {
 	 	Stack<Integer> s = new Stack<Integer> ();
 		Scanner tokens = new Scanner(exp);
@@ -39,13 +30,10 @@ public class Postfix {
 					s.push(num1 * num2);
 				} else {
 					s.push(num1 / num2);
-				}
-				
+				} 
 			//  "+", "-", "*", "/"
 			}
 		}
 		return s.pop();
     }
 }
-
-
